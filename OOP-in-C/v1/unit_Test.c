@@ -12,7 +12,7 @@
 /*********************************************************************/
 
 void run_single(void) {
-	ChainCounter single;	
+	ChainCounter single;
 	ChainCounter_Init(&single, 12, 7, NULL);
 
 #ifdef WHITEBOX_TEST
@@ -41,7 +41,7 @@ void run_twostage(void) {
 	assert(ChainCounter_GetValue(&c_lower) == 6);
 	ChainCounter_Step1(&c_upper);
 	assert(ChainCounter_GetValue(&c_upper) == 2);
-	
+
 	ChainCounter_StepN(&c_lower, 3);
 /*	assert(ChainCounter_GetValue(&c_upper) == ?...?);
 	assert(ChainCounter_GetValue(&c_lower) == ?...?);
@@ -122,7 +122,7 @@ void run_multiple(void) {
 	assert(ChainCounter_Remaining(&arr[0]) == 0);
 	ChainCounter_Step1(&arr[3]);
 	assert(ChainCounter_Remaining(&arr[3]) == 0);
-	assert(ChainCounter_Remaining(&arr[0]) == 0);
+	assert(ChainCounter_Remaining(&arr[2]) == 0);
 	assert(ChainCounter_Remaining(&arr[1]) == 0);
 	assert(ChainCounter_Remaining(&arr[0]) == 0);
 	ChainCounter_Step1(&arr[3]);
