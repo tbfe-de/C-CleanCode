@@ -14,7 +14,7 @@ TestRunner= assert_based
 run-all-tests: $(TestRunner)
 	@./$(TestRunner)
 $(TestRunner): unit_Test.c ChainCounter.c ChainCounter.h
-	gcc -o $@ unit_Test.c ChainCounter.c
+	$(Compile) -o $@ unit_Test.c ChainCounter.c
 
 run-demo-app: app_main
 	@./app_main

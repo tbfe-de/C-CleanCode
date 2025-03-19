@@ -16,7 +16,7 @@ run-all-tests: $(TestRunner)
 $(TestRunner): ChainCounter.c ChainCounter.h
 $(TestRunner): single_Test.c twostage_Test.c multiple_Test.c
 $(TestRunner): unit_Test.c main_Test.c
-	gcc -o $@ -I.. ChainCounter.c\
+	$(Compile) -o $@ -I.. ChainCounter.c\
 		single_Test.c twostage_Test.c multiple_Test.c\
 		unit_Test.c main_Test.c
 
@@ -24,7 +24,7 @@ run-demo-app: app_main
 	@./app_main
 app_main: ChainCounter.c ChainCounter.h
 app_main: DDD_HH_MM_SS.c DDD_HH_MM_SS.h
-	gcc -o $@ ChainCounter.c DDD_HH_MM_SS.c
+	$(Compile) -o $@ ChainCounter.c DDD_HH_MM_SS.c
 
 clean:
 	rm -f $(TestRunner) app_main
