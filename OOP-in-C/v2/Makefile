@@ -5,7 +5,7 @@
 default: run-all-tests
 
 # below the compiler and its options can be changed:
-Compile=gcc -std=c89
+Compile=gcc -std=c99
 
 # usually nothing needs to be changed below this line
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -23,7 +23,7 @@ $(TestRunner): unit_Test.c main_Test.c
 run-demo-app: app_main
 	@./app_main
 app_main: ChainCounter.c ChainCounter.h
-app_main: DDD_HH_MM_SS.c DDD_HH_MM_SS.h
+app_main: DDD_HH_MM_SS.c
 	$(Compile) -o $@ ChainCounter.c DDD_HH_MM_SS.c
 
 clean:
