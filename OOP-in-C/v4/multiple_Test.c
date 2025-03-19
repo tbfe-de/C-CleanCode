@@ -11,12 +11,6 @@ TEST(multiple, step) {
 		{2, 1, arr[1]},
 	};
 
-#if 0
-	for (int i = 0; i < N; ++i) {
-		ChainCounter *const pn = (i > 0) ? &arr[i-1] : nullptr;
-		ChainCounter_Init(&arr[i], 2, 1, pn);
-	}
-#endif
 	ASSERT_EQ(1, arr[2].GetValue());
 	ASSERT_EQ(1, arr[1].GetValue());
 	ASSERT_EQ(1, arr[0].GetValue());
