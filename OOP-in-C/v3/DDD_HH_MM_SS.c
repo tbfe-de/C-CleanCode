@@ -20,8 +20,7 @@ ChainCounter DDD_HH_MM_SS::minutes_{60, 0, &DDD_HH_MM_SS::hours_};
 ChainCounter DDD_HH_MM_SS::seconds_{60, 0, &DDD_HH_MM_SS::minutes_};
 char DDD_HH_MM_SS::display_[14];
 
-char DDD_HH_MM_SS::chr_digit(const ChainCounter& counter,
-									const int decimal) {
+char DDD_HH_MM_SS::chr_digit(const ChainCounter& counter, const int decimal) {
 	const int value = counter.GetValue();
 	return '0' + value / decimal % 10;
 }
