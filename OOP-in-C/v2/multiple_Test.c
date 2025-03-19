@@ -41,7 +41,7 @@ TEST(multiple, step) {
 
 	ChainCounter_StepN(&arr[3], 7);
 	ASSERT_EQ(1, ChainCounter_Remaining(&arr[3]));
-	ASSERT_EQ(0, ChainCounter_Remaining(&arr[0]));
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[2]));
 	ASSERT_EQ(0, ChainCounter_Remaining(&arr[1]));
 	ASSERT_EQ(0, ChainCounter_Remaining(&arr[0]));
 	ChainCounter_Step1(&arr[3]);
