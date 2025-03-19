@@ -7,17 +7,17 @@ struct {
 	ChainCounter seconds_;
 	char display_[14];
 } DDD_HH_MM_SS = {
-	{ 999, 0, NULL },
-	{ 24,  0, &DDD_HH_MM_SS.days_ },
-	{ 60,  0, &DDD_HH_MM_SS.hours_ },
-	{ 60,  0, &DDD_HH_MM_SS.minutes_ },
+	{999, 0, NULL },
+	{24,  0, &DDD_HH_MM_SS.days_},
+	{60,  0, &DDD_HH_MM_SS.hours_},
+	{60,  0, &DDD_HH_MM_SS.minutes_},
 };
 
 static char chr_digit(const ChainCounter* const counter, const int decimal) {
 	const int value = ChainCounter_GetValue(counter);
 	return '0' + value / decimal % 10;
 }
-	
+
 static void DDD_HH_MM_SS_update() {
 	DDD_HH_MM_SS.display_[0] = chr_digit(&DDD_HH_MM_SS.days_, 100);
 	DDD_HH_MM_SS.display_[0] == '0' && (DDD_HH_MM_SS.display_[0] = ' ');
@@ -63,13 +63,13 @@ void run_app(int days, int hours, int minutes, int seconds) {
 		DDD_HH_MM_SS_update();
 		distance = rand() % (10*1000);
 		if (distance > remaining) distance = remaining;
-		printf("%s -- next: %4u steps of %ld remaining\n",
-			DDD_HH_MM_SS.display_, distance, remaining);
+		(void) printf("%s -- next: %4u steps of %ld remaining\n",
+					   DDD_HH_MM_SS.display_, distance, remaining);
 		DDD_HH_MM_SS_step(distance);
 		remaining = DDD_HH_MM_SS_remaining();
 	} while (remaining > 0);
 	DDD_HH_MM_SS_update();
-	printf("%s -- DONE\n", DDD_HH_MM_SS.display_);
+	(void) printf("%s -- DONE\n", DDD_HH_MM_SS.display_);
 }
 
 int main(int argc, char* argv[]) {
