@@ -10,20 +10,15 @@
 						/* EXIT_FAILURE (macro) */
 						/* EXIT_SUCCESS (macro) */
 
+#define RLIMIT_BAKED_IN_MAXIMUM (10*1000)
+
 static const char* PROG;
 static void show_usage_and_fail() {
 	fprintf(stderr,
 			"USAGE: %s %s\n",
-					PROG, "[days [hours [minutes [seconds]]]]");
+					PROG, "[rlimit [days [hours [minutes [seconds]]]]]");
 	exit(EXIT_FAILURE);
 }
-
-static struct DHMS_ {
-	long days_;
-	long hours_;
-	long minutes_;
-	long seconds_;
-} DHMS = { 0, 0, 0, 0 };
 
 static const char* getenv_or_default(const char* name, const char* deflt) {
 	const char* env_var = getenv(name);
@@ -32,25 +27,34 @@ static const char* getenv_or_default(const char* name, const char* deflt) {
 
 static int ARGC;
 static char** ARGV;
+
+static RDHMS params = {	// the values below are the backed-i defaults
+	.rlimit_ = RLIMIT_BAKED_IN_MAXIMUM,
+	.days_ = 1,
+	.hours_ = 0,
+	.minutes_ = 0,
+	.seconds_ = 0,
+};
 static bool parse_cmdline_args() {
-	return (ARGC <= 5)
-		&& ((ARGC <= 1) || range_checked_atol(ARGV[1], &DHMS.days_, 0, 999))
-		&& ((ARGC <= 2) || range_checked_atol(ARGV[2], &DHMS.hours_, 0, 23))
-		&& ((ARGC <= 3) || range_checked_atol(ARGV[3], &DHMS.minutes_, 0, 59))
-		&& ((ARGC <= 4) || range_checked_atol(ARGV[4], &DHMS.seconds_, 0, 59))
+	return (ARGC <= 6)
+		&& ((ARGC <= 1) || range_checked_atol(ARGV[1], &params.rlimit_, 1, RLIMIT_BAKED_IN_MAXIMUM))
+		&& ((ARGC <= 2) || range_checked_atol(ARGV[2], &params.days_, 0, 999))
+		&& ((ARGC <= 3) || range_checked_atol(ARGV[3], &params.hours_, 0, 23))
+		&& ((ARGC <= 4) || range_checked_atol(ARGV[4], &params.minutes_, 0, 59))
+		&& ((ARGC <= 5) || range_checked_atol(ARGV[5], &params.seconds_, 0, 59))
 		;
 }
 
 static void preload_from_env_var(const char* name) {
-	const char* preload = getenv_or_default(name, "0 1");
+	const char* preload = getenv_or_default(name, "1 1");
 	struct string_list_atol_ctl ctl[] = {
-		{&DHMS.days_, 0, 999},
-		{&DHMS.hours_, 0, 23},
-		{&DHMS.minutes_, 0, 59},
-		{&DHMS.seconds_, 0, 59},
+		{&params.rlimit_, 1, RLIMIT_BAKED_IN_MAXIMUM},
+		{&params.days_, 0, 999},
+		{&params.hours_, 0, 23},
+		{&params.minutes_, 0, 59},
+		{&params.seconds_, 0, 59},
 		{NULL}
 	};
-	(void)string_list_atol(preload, ctl);
 }
 
 int main(int argc, char* argv[]) {
@@ -60,6 +64,6 @@ int main(int argc, char* argv[]) {
 	preload_from_env_var("DDD_HH_MM_SS_PRELOAD");
 	if (!parse_cmdline_args())
 		show_usage_and_fail();
-	run_app(DHMS.days_, DHMS.hours_, DHMS.minutes_, DHMS.seconds_);
+	run_app(params);
 	return EXIT_SUCCESS;
 }

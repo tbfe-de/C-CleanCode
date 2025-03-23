@@ -28,7 +28,7 @@ run-demo-app: app_main
 app_main: ChainCounter.c ChainCounter.h
 app_main: DDD_HH_MM_SS.c DDD_HH_MM_SS.h
 app_main: my_utils.c my_utils.h
-app_main: app_main.c
+app_main: run_app.c app_main.c
 	$(Compile) -o $@ ChainCounter.c DDD_HH_MM_SS.c my_utils.c\
 					run_app.c app_main.c
 
