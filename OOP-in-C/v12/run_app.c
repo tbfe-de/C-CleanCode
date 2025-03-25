@@ -20,7 +20,7 @@ void APP_run(APP* self, const RDHMS params) {
 	unsigned int distance;
 	do {
 		DDD_HH_MM_SS_update(&self->countdown_);
-		distance = rand() % params.rlimit_;
+		distance = 1 + rand() % params.rlimit_;
 		if (distance > remaining) distance = remaining;
 		(void) printf("%s -- next: %4u steps of %ld remaining\n",
 					   DDD_HH_MM_SS_display(&self->countdown_),

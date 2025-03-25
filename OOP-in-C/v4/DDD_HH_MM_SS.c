@@ -72,7 +72,7 @@ void run_app(int days, int hours, int minutes, int seconds) {
 	unsigned int distance;
 	do {
 		DDD_HH_MM_SS::update();
-		distance = rand() % (10*1000);
+		distance = 1 + rand() % (10*1000);
 		if (distance > remaining) distance = remaining;
 		printf("%s -- next: %4u steps of %ld remaining\n",
 			DDD_HH_MM_SS::get(), distance, remaining);

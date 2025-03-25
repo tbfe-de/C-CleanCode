@@ -61,7 +61,7 @@ void run_app(int days, int hours, int minutes, int seconds) {
 	unsigned int distance;
 	do {
 		DDD_HH_MM_SS_update();
-		distance = rand() % (10*1000);
+		distance = 1 + rand() % (10*1000);
 		if (distance > remaining) distance = remaining;
 		(void) printf("%s -- next: %4u steps of %ld remaining\n",
 					   DDD_HH_MM_SS.display_, distance, remaining);
@@ -70,12 +70,4 @@ void run_app(int days, int hours, int minutes, int seconds) {
 	} while (remaining > 0);
 	DDD_HH_MM_SS_update();
 	(void) printf("%s -- DONE\n", DDD_HH_MM_SS.display_);
-}
-
-int main(int argc, char* argv[]) {
-	run_app((argc > 1) ? atoi(argv[1]) : 4,
-		(argc > 2) ? atoi(argv[2]) : 3,
-		(argc > 3) ? atoi(argv[3]) : 2,
-		(argc > 4) ? atoi(argv[4]) : 1);
-	return 0;
 }
