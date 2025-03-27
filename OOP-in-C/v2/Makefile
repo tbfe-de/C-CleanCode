@@ -4,7 +4,7 @@
 #
 default: run-all-tests
 
-# below the compiler and its options can be changed:
+# below the compiler and its options can be set:
 Compile=gcc -std=c99
 
 # usually nothing needs to be changed below this line

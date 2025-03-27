@@ -13,5 +13,5 @@
 
 // if required add more test groups below
 //
-TESTCASE(app)
+TESTCASE(countdown)
 // ...

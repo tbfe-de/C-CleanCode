@@ -17,8 +17,8 @@ int main(int argc, char* argv[]) {
 	const char* const prog = argv[0] ? argv[0] : "(null)";
 	if (argc > 5) show_usage_and_fail(prog);
 	run_app((argc > 1) ? atoi(argv[1]) : 4,
-		(argc > 2) ? atoi(argv[2]) : 3,
-		(argc > 3) ? atoi(argv[3]) : 2,
-		(argc > 4) ? atoi(argv[4]) : 1);
+			(argc > 2) ? atoi(argv[2]) : 3,
+			(argc > 3) ? atoi(argv[3]) : 2,
+			(argc > 4) ? atoi(argv[4]) : 1);
 	return EXIT_SUCCESS;
 }

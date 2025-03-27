@@ -5,18 +5,18 @@
 
 #include "DDD_HH_MM_SS.h"
 
-TEST(app, initial) {
+TEST(countdown, initial) {
     DDD_HH_MM_SS_update();
     EXPECT_STREQ("  0d00h00m00s", DDD_HH_MM_SS_display());
 }
 
-TEST(app, set) {
+TEST(countdown, set) {
     DDD_HH_MM_SS_set(1, 2, 3, 4);
     DDD_HH_MM_SS_update();
     EXPECT_STREQ("  1d02h03m04s", DDD_HH_MM_SS_display());
 }
 
-TEST(app, step) {
+TEST(countdown, step) {
     DDD_HH_MM_SS_set(1, 1, 1, 1);
     DDD_HH_MM_SS_update();
     EXPECT_STREQ("  1d01h01m01s", DDD_HH_MM_SS_display());

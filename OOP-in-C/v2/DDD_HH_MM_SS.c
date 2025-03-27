@@ -22,6 +22,7 @@ static void DDD_HH_MM_SS_update() {
 	DDD_HH_MM_SS.display_[0] = chr_digit(&DDD_HH_MM_SS.days_, 100);
 	DDD_HH_MM_SS.display_[0] == '0' && (DDD_HH_MM_SS.display_[0] = ' ');
 	DDD_HH_MM_SS.display_[1] = chr_digit(&DDD_HH_MM_SS.days_, 10);
+	DDD_HH_MM_SS.display_[0] == ' ' &&
 	DDD_HH_MM_SS.display_[1] == '0' && (DDD_HH_MM_SS.display_[1] = ' ');
 	DDD_HH_MM_SS.display_[2] = chr_digit(&DDD_HH_MM_SS.days_, 1);
 	DDD_HH_MM_SS.display_[3] = 'd';

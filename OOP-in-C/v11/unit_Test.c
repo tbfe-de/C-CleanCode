@@ -15,5 +15,5 @@
 //
 TESTCASE(utils_checked)
 TESTCASE(utils_slist)
-TESTCASE(demo_app)
+TESTCASE(countdown)
 // ...

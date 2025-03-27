@@ -5,14 +5,14 @@
 
 #include "DDD_HH_MM_SS.h"
 
-TEST(demo_app, initial) {
+TEST(countdown, initial) {
     DDD_HH_MM_SS obj;
     DDD_HH_MM_SS_Init(&obj);
     DDD_HH_MM_SS_update(&obj);
     EXPECT_STREQ("  0d00h00m00s", DDD_HH_MM_SS_display(&obj));
 }
 
-TEST(demo_app, set) {
+TEST(countdown, set) {
     DDD_HH_MM_SS obj;
     DDD_HH_MM_SS_Init(&obj);
     DDD_HH_MM_SS_set(&obj, 1, 2, 3, 4);
@@ -20,7 +20,7 @@ TEST(demo_app, set) {
     EXPECT_STREQ("  1d02h03m04s", DDD_HH_MM_SS_display(&obj));
 }
 
-TEST(demo_app, step) {
+TEST(countdown, step) {
     DDD_HH_MM_SS obj;
     DDD_HH_MM_SS_Init(&obj);
     DDD_HH_MM_SS_set(&obj, 1, 1, 1, 1);

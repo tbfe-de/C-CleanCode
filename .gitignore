@@ -1,3 +1,8 @@
+# Project specific executables
+assert_based
+gtest_based
+app_main
+
 # Prerequisites
 *.d
 
