@@ -5,12 +5,13 @@
 TEST(run_app, run) {
     APP app;
     APP_Init(&app);
-    RDHMS params = {2, 0, 0, 0, 20};
+    RDHMS params = {1, 0, 0, 0, 3};
 #ifdef WHITEBOX_TEST
+	ASSERT_EQ(1, app.countdown_.rlimit_);
 	ASSERT_EQ(0, app.countdown_.days_.value_);
 	ASSERT_EQ(0, app.countdown_.hours_.value_);
 	ASSERT_EQ(0, app.countdown_.minutes_.value_);
-	ASSERT_EQ(0, app.countdown_.seconds_.value_);
+	ASSERT_EQ(3, app.countdown_.seconds_.value_);
 #endif
     char sufficient[200] = {'\0'};
     SBuffer output = SBuffer_INIT(sufficient);
