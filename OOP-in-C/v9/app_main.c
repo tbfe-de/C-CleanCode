@@ -1,9 +1,7 @@
 #include "run_app.h"
-
 #include "my_utils.h"
 
 #include <stdbool.h>	/* bool (macro) */
-
 #include <stdio.h>		/* fprintf() */
 #include <stdlib.h>		/* atoi() */
 						/* exit() */
@@ -25,11 +23,6 @@ static struct DHMS_ {
 	long seconds_;
 } DHMS = { 0, 0, 0, 0 };
 
-static const char* getenv_or_default(const char* name, const char* deflt) {
-	const char* env_var = getenv(name);
-	return env_var ? env_var : deflt;
-}
-
 static int ARGC;
 static char** ARGV;
 static bool parse_cmdline_args() {
@@ -39,6 +32,12 @@ static bool parse_cmdline_args() {
 		&& ((ARGC <= 3) || range_checked_atol(ARGV[3], &DHMS.minutes_, 0, 59))
 		&& ((ARGC <= 4) || range_checked_atol(ARGV[4], &DHMS.seconds_, 0, 59))
 		;
+}
+
+static const char* getenv_or_default(const char* var_name,
+									 const char* default_value) {
+	const char* env_var = getenv(var_name);
+	return env_var ? env_var : default_value;
 }
 
 static void preload_from_env_var(const char* name) {
