@@ -12,8 +12,9 @@ typedef struct SBuffer_ {
 #define SBuffer_INIT(charray)\
     { charray, (sizeof charray) - 1, &charray[0] }
 
-size_t SB_strlen(const SBuffer*);
-void SB_clear(SBuffer*);
+size_t SBstrlen(const SBuffer*);
+void SBclear(SBuffer*);
+void SBpurge(SBuffer*);
 int SBprintf(SBuffer*, const char*, ...);
 
 #endif // include guard
