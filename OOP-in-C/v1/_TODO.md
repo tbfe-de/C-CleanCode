@@ -62,4 +62,49 @@ seconds:
   0d00h00m00s -- DONE
 ```
 
-== More TBD ==
+## Following Plan A – Get active with some hands-on coding
+
+REMINDER: do not change the files in `v1` - create a new directory
+(eg. `my_v1`) and copy-over all files from `v1`.
+
+1. Understand that there are actually two `main` programs:
+   * one is is part `DDD_HH_SS.c`,
+   * the other is part of `unit_Test.c`
+   * for a better *Separation of Responsibilities* (SRP)
+     * **create a new file `run_app.cpp`** and  
+     * **move the `main` program from `DDD_HH_SS.c` over to it**   
+     * **also copy over the `Makefile` from `v2`**
+
+------------------------------------------------------------------
+
+Use `run_demo_app` to verify everything that once worked stills
+gives the expected result. If anything needs to be fixed, do it
+before you continue.
+
+------------------------------------------------------------------
+
+2. Complete the currently commented-out tests one after the other.
+
+------------------------------------------------------------------
+
+Use plain `make` (to run all tests) each time and if you don't get
+`** unit tests passed **`
+
+* either try to fix the problem yourself
+* make a mental to discuss it later** (and leave the comment)
+
+Y------------------------------------------------------------------
+
+3. Understand that as a minimum `assert`-ion based tests are nice
+   and emphasize the *TDD Mindset* but in practice they are clumsy
+   and hence unit testing should rather be done with a framework
+   specialized for that purpose.
+
+------------------------------------------------------------------
+
+## Following Plan B - Understand what should have been done
+
+Do a "side by "side" comparison and try to reason why the changes
+made improved the cleanliness of the code. In this reasoning
+include the files newly were created to which then code of already
+existing files has been moved. (Is this still KISS? Is it YAGNI?)
