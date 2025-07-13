@@ -13,7 +13,29 @@ gcc -std=c99 -o assert_based unit_Test.c ChainCounter.c
 ** unit tests passed **
 ```
 
-If you repeat the `make` command
+If you repeat the `make` command the first line (showing the
+command to compile the program) will not appear again. Unless of
+course you first do this:
+
+```sh
+make clean
+```
+
+This removes all the intermediate files created intentionally or
+unintentionally.
+
+**NOTE:** The use of a `Makefile` to control the compilation (and
+in this case also running the compiled executable) is a deliberate
+choice. In real projects meanwhile *CMake* is used, for good
+reasons. But in more basic training with only a handful of source
+files, like this one, *CMake* is a less transparent wrt.
+dependencies. In comparison, building the executable(s) based on
+the explicit description in a `Makefile` much better shows what's
+really going on behind the scenes.
+
+**If a majority of participants wants to learn the basics of a
+`Makefile`-based build, we can spend a few minutes on this topic,
+though it's only loosely related to "Clean Code in C".**
 
 ## Run the Demo Application
 
@@ -93,7 +115,7 @@ Use plain `make` (to run all tests) each time and if you don't get
 * either try to fix the problem yourself
 * make a mental to discuss it later** (and leave the comment)
 
-Y------------------------------------------------------------------
+------------------------------------------------------------------
 
 3. Understand that as a minimum `assert`-ion based tests are nice
    and emphasize the *TDD Mindset* but in practice they are clumsy

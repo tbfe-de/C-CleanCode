@@ -1,8 +1,6 @@
-## Activities with Version 5
+## Activities with Version 9
 
-Now turning back from C++ to C.
-
-**Maybe you should not completely skip this as it a rather advanced topic.**
+== More TBD ==
 
 ### Run the Unit Tests
 ### Run the Demo Application
