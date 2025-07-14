@@ -1,6 +1,10 @@
 #ifndef RUN_APP_H
 #define RUN_APP_H
 
+#include "SBuffer.h"
+
+#include "DDD_HH_MM_SS.h"
+
 typedef struct RDHMS_ {
     long rlimit_;
 	long days_;
@@ -9,6 +13,12 @@ typedef struct RDHMS_ {
 	long seconds_;
 } RDHMS;
 
-void run_app(const RDHMS);
+typedef struct APP_ {
+    DDD_HH_MM_SS countdown_;
+	SBuffer* output_;
+} APP;
+
+void APP_Init(APP *self, SBuffer* output);
+void APP_run(APP *self, RDHMS params);
 
 #endif // include guard

@@ -1,34 +1,29 @@
-#include "ChainCounter.h"
+#include "run_app.h"
+
+#include "DDD_HH_MM_SS.h"
 
 #include <stdio.h> /* printf() */
 #include <stdlib.h> /* rand() */
 
-extern struct {
-	ChainCounter days_;
-	ChainCounter hours_;
-	ChainCounter minutes_;
-	ChainCounter seconds_;
-	char display_[14];
-} DDD_HH_MM_SS;
-
-extern void DDD_HH_MM_SS_set();
-extern void DDD_HH_MM_SS_update();
-extern void DDD_HH_MM_SS_step();
-extern long DDD_HH_MM_SS_remaining();
-
-void run_app(int days, int hours, int minutes, int seconds) {
-	DDD_HH_MM_SS_set(days, hours, minutes, seconds);
-	long remaining = DDD_HH_MM_SS_remaining();
+void run_app(const RDHMS params) {
+	DDD_HH_MM_SS obj;
+	DDD_HH_MM_SS_Init(&obj);
+	DDD_HH_MM_SS_set(&obj,
+					 params.days_,
+					 params.hours_,
+					 params.minutes_,
+					 params.seconds_);
+	long remaining = DDD_HH_MM_SS_remaining(&obj);
 	unsigned int distance;
 	do {
-		DDD_HH_MM_SS_update();
-		distance = 1 + rand() % (10*1000);
+		DDD_HH_MM_SS_update(&obj);
+		distance = 1 + rand() % params.rlimit_;
 		if (distance > remaining) distance = remaining;
 		(void) printf("%s -- next: %4u steps of %ld remaining\n",
-					   DDD_HH_MM_SS.display_, distance, remaining);
-		DDD_HH_MM_SS_step(distance);
-		remaining = DDD_HH_MM_SS_remaining();
+					   DDD_HH_MM_SS_display(&obj), distance, remaining);
+		DDD_HH_MM_SS_step(&obj, distance);
+		remaining = DDD_HH_MM_SS_remaining(&obj);
 	} while (remaining > 0);
-	DDD_HH_MM_SS_update();
-	(void) printf("%s -- DONE\n", DDD_HH_MM_SS.display_);
+	DDD_HH_MM_SS_update(&obj);
+	(void) printf("%s -- DONE\n", DDD_HH_MM_SS_display(&obj));
 }

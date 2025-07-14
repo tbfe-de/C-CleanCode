@@ -13,5 +13,7 @@
 
 // if required add more test groups below
 //
-TESTCASE(app)
+TESTCASE(utils_checked)
+TESTCASE(utils_slist)
+TESTCASE(countdown)
 // ...

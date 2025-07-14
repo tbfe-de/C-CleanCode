@@ -1,32 +1,36 @@
-## Activities with Version 5
-
-Now turning back from C++ to C.
-
-**Maybe you should not completely skip though this as it a rather
-advanced topic.**
-
-If you have skipped the last two versions this is the chance to
-see what C++ really does behind the scenes and how to do it at a
-lower and more error prone level with type casts.
+## Activities with Version 9
 
 ### Run the Unit Tests
 
-Same as in the previous version – no change in observable
-behavior. And even the timing should be similar.
+First examine the new tests that have been added for
+
+* `range_checked_atol` and
+* `range_checked_atof`
+
+**Note**: It's not quite *YAGNI* (you ain't going to need it) that
+there is already functionality implemented that is not needed in
+the current project. As an excuse just assume the new requirements
+(which then need this new functionality) is already known at this
+pont in time.
 
 ### Run the Demo Application
 
-Same as in the previous version – no change in observable
-behavior.
+Try both, "good" and "bad" input, both as command line arguments
+and from the environment variable `DDD_HH_MM_SS_PRELOAD`. How
+environment variable are set may vary with the Shell you use.
+
+Typically something this works:
+
+```sh
+DDD_HH_MM_SS_PRELOAD='10 20 30 40'
+export DDD_HH_MM_SS_PRELOAD
+```
+
+If you want to know whether the variable was set use:
+
+```sh
+env | grep DDD_HH_MM_SS_PRELOAD
+```
 
 ## Following Plan A – Get active with some hands-on coding
-
-If you desperately want or need to code at the low level in the
-same way C++ would give you for granted, devise a plan how to
-hide some of the repeating details in pro-processor macros.
-
 ## Following Plan B - Understand what should have been done
-
-Do a side-by-side comparison with the next version to understand
-how the C-preprocessor can be used to help avoiding repeated and
-error prone coding.

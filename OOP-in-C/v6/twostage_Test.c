@@ -1,48 +1,47 @@
 #include "../gtest/gtest.h"
 
 #include "ChainCounter.h"
-#include "c_calls.h"
 
 TEST(twostage, step) {
-	BaseCounter c_upper;
-	DCALL_2(BaseCounter, c_upper, Init, 4, 3);
+	ChainCounter c_upper;
+	ChainCounter_Init(&c_upper, 4, 3, NULL);
 	ChainCounter c_lower;
-	DCALL_3(ChainCounter, c_lower, Init, 7, 6, &c_upper);
+	ChainCounter_Init(&c_lower, 7, 6, &c_upper);
 
-	ASSERT_EQ(3, DCALL_(BaseCounter, c_upper, GetValue));
-	ASSERT_EQ(6, DCALL_(ChainCounter, c_lower, GetValue));
-	DCALL_(BaseCounter, c_upper, Step1);
-	ASSERT_EQ(2, DCALL_(BaseCounter, c_upper, GetValue));
+	ASSERT_EQ(3, ChainCounter_GetValue(&c_upper));
+	ASSERT_EQ(6, ChainCounter_GetValue(&c_lower));
+	ChainCounter_Step1(&c_upper);
+	ASSERT_EQ(2, ChainCounter_GetValue(&c_upper));
 
-	DCALL_1(ChainCounter, c_lower, StepN, 3);
-	ASSERT_EQ(2, DCALL_(BaseCounter, c_upper, GetValue));
-	ASSERT_EQ(3, DCALL_(ChainCounter, c_lower, GetValue));
+	ChainCounter_StepN(&c_lower, 3);
+	ASSERT_EQ(2, ChainCounter_GetValue(&c_upper));
+	ASSERT_EQ(3, ChainCounter_GetValue(&c_lower));
 
-	DCALL_1(ChainCounter, c_lower, StepN, 3);
-	ASSERT_EQ(2, DCALL_(BaseCounter, c_upper, GetValue));
-	ASSERT_EQ(0, DCALL_(ChainCounter, c_lower, GetValue));
+	ChainCounter_StepN(&c_lower, 3);
+	ASSERT_EQ(2, ChainCounter_GetValue(&c_upper));
+	ASSERT_EQ(0, ChainCounter_GetValue(&c_lower));
 
-	DCALL_1(ChainCounter, c_lower, StepN, 3);
-	ASSERT_EQ(1, DCALL_(BaseCounter, c_upper, GetValue));
-	ASSERT_EQ(4, DCALL_(ChainCounter, c_lower, GetValue));
+	ChainCounter_StepN(&c_lower, 3);
+	ASSERT_EQ(1, ChainCounter_GetValue(&c_upper));
+	ASSERT_EQ(4, ChainCounter_GetValue(&c_lower));
 
-	DCALL_1(ChainCounter, c_lower, StepN, 3);
-	ASSERT_EQ(1, DCALL_(BaseCounter, c_upper, GetValue));
-	ASSERT_EQ(1, DCALL_(ChainCounter, c_lower, GetValue));
+	ChainCounter_StepN(&c_lower, 3);
+	ASSERT_EQ(1, ChainCounter_GetValue(&c_upper));
+	ASSERT_EQ(1, ChainCounter_GetValue(&c_lower));
 
-	DCALL_1(ChainCounter, c_lower, StepN, 3);
-	ASSERT_EQ(0, DCALL_(BaseCounter, c_upper, GetValue));
-	ASSERT_EQ(5, DCALL_(ChainCounter, c_lower, GetValue));
+	ChainCounter_StepN(&c_lower, 3);
+	ASSERT_EQ(0, ChainCounter_GetValue(&c_upper));
+	ASSERT_EQ(5, ChainCounter_GetValue(&c_lower));
 
-	DCALL_1(ChainCounter, c_lower, StepN, 3);
-	ASSERT_EQ(0, DCALL_(BaseCounter, c_upper, GetValue));
-	ASSERT_EQ(2, DCALL_(ChainCounter, c_lower, GetValue));
+	ChainCounter_StepN(&c_lower, 3);
+	ASSERT_EQ(0, ChainCounter_GetValue(&c_upper));
+	ASSERT_EQ(2, ChainCounter_GetValue(&c_lower));
 
-	DCALL_1(ChainCounter, c_lower, StepN, 3);
-	ASSERT_EQ(0, DCALL_(BaseCounter, c_upper, GetValue));
-	ASSERT_EQ(0, DCALL_(ChainCounter, c_lower, GetValue));
+	ChainCounter_StepN(&c_lower, 3);
+	ASSERT_EQ(0, ChainCounter_GetValue(&c_upper));
+	ASSERT_EQ(0, ChainCounter_GetValue(&c_lower));
 
-	DCALL_1(ChainCounter, c_lower, StepN, 3);
-	ASSERT_EQ(0, DCALL_(BaseCounter, c_upper, GetValue));
+	ChainCounter_StepN(&c_lower, 3);
+	ASSERT_EQ(0, ChainCounter_GetValue(&c_upper));
 	ASSERT_EQ(0, ChainCounter_GetValue(&c_lower));
 }

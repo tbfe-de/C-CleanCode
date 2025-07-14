@@ -37,7 +37,7 @@ static RDHMS params = {	// the values below are the backed-i defaults
 };
 static bool parse_cmdline_args() {
 	return (ARGC <= 6)
-		&& ((ARGC <= 1) || range_checked_atol(ARGV[1], &params.rlimit_, 1, RLIMIT_BAKED_IN_MAXIMUM))
+		&& ((ARGC <= 1) || range_checked_atol(ARGV[1], &params.rlimit_, 2, RLIMIT_BAKED_IN_MAXIMUM))
 		&& ((ARGC <= 2) || range_checked_atol(ARGV[2], &params.days_, 0, 999))
 		&& ((ARGC <= 3) || range_checked_atol(ARGV[3], &params.hours_, 0, 23))
 		&& ((ARGC <= 4) || range_checked_atol(ARGV[4], &params.minutes_, 0, 59))
@@ -48,7 +48,7 @@ static bool parse_cmdline_args() {
 static void preload_from_env_var(const char* name) {
 	const char* preload = getenv_or_default(name, "1 1");
 	struct string_list_atol_ctl ctl[] = {
-		{&params.rlimit_, 1, RLIMIT_BAKED_IN_MAXIMUM},
+		{&params.rlimit_, 2, RLIMIT_BAKED_IN_MAXIMUM},
 		{&params.days_, 0, 999},
 		{&params.hours_, 0, 23},
 		{&params.minutes_, 0, 59},
@@ -64,6 +64,13 @@ int main(int argc, char* argv[]) {
 	preload_from_env_var("DDD_HH_MM_SS_PRELOAD");
 	if (!parse_cmdline_args())
 		show_usage_and_fail();
-	run_app(params);
+// - - - - - - - - - - - - - - - - - - -
+	char huge[100*1000];
+	SBuffer output = SBuffer_INIT(huge);
+	APP the_app;
+	APP_Init(&the_app, &output);
+	APP_run(&the_app, params);
+	puts(output.static_buffer);
+// - - - - - - - - - - - - - - - - - - -
 	return EXIT_SUCCESS;
 }

@@ -51,7 +51,7 @@ gcc -std=c99 -o app_main ChainCounter.c DDD_HH_MM_SS.c
   4d01h08m33s -- next: 5250 steps of 349713 remaining
   3d23h41m03s -- next:   74 steps of 344463 remaining
 ...
-0d10h01m39s -- next: 7802 steps of 36099 remaining
+  0d10h01m39s -- next: 7802 steps of 36099 remaining
   0d07h51m37s -- next: 6854 steps of 28297 remaining
   0d05h57m23s -- next:  978 steps of 21443 remaining
   0d05h41m05s -- next: 7409 steps of 20465 remaining
@@ -86,34 +86,33 @@ seconds:
 
 ## Following Plan A – Get active with some hands-on coding
 
-REMINDER: do not change the files in `v1` - create a new directory
-(eg. `my_v1`) and copy-over all files from `v1`.
+REMINDER: you should do this kind of work in the sub-directory
+`v1_to_v2` which has been prepared with all the files from the
+sub-directory `v1` plus the `Makefile` from `v2.
 
 1. Understand that there are actually two `main` programs:
-   * one is is part `DDD_HH_SS.c`,
+   * one is is part `DDD_HH_MM_SS.c`,
    * the other is part of `unit_Test.c`
    * for a better *Separation of Responsibilities* (SRP)
      * **create a new file `run_app.cpp`** and  
-     * **move the `main` program from `DDD_HH_SS.c` over to it**   
-     * **also copy over the `Makefile` from `v2`**
+     * **move the `main` program from `DDD_HH_MM_SS.c` into it**   
 
 ------------------------------------------------------------------
 
-Use `run_demo_app` to verify everything that once worked stills
-gives the expected result. If anything needs to be fixed, do it
-before you continue.
+Use `make run-demo-app` to verify everything that once worked
+still works and gives the expected result. If anything needs to be
+fixed, do it before you continue.
 
 ------------------------------------------------------------------
 
-2. Complete the currently commented-out tests one after the other.
-
-------------------------------------------------------------------
+2. (optional) Complete the currently commented-out tests one after
+   the other.
 
 Use plain `make` (to run all tests) each time and if you don't get
 `** unit tests passed **`
 
 * either try to fix the problem yourself
-* make a mental to discuss it later** (and leave the comment)
+* make a mental notice to discuss it later (and leave the comment)
 
 ------------------------------------------------------------------
 
@@ -121,6 +120,9 @@ Use plain `make` (to run all tests) each time and if you don't get
    and emphasize the *TDD Mindset* but in practice they are clumsy
    and hence unit testing should rather be done with a framework
    specialized for that purpose.
+
+In the continuing steps of this example the *WOGTEST* is used as
+test framework.
 
 ------------------------------------------------------------------
 

@@ -1,16 +1,18 @@
 #ifndef CHAIN_COUNTER_H
 #define CHAIN_COUNTER_H
 
-#include "BaseCounter.h"
+#include <stddef.h> /* NULL (macro) */
 
-class ChainCounter : public BaseCounter {
-private:
-	class BaseCounter& next_;
-	void underflow() override;
-	long chained() const override;
-public:
-	ChainCounter(int range, int value, BaseCounter&);
-	using BaseCounter::operator=;
-};
+typedef struct ChainCounter_ {
+	int range_;
+	int value_;
+	struct ChainCounter_* next_;
+} ChainCounter;
+
+void ChainCounter_Init(ChainCounter* const self, int range, int value, ChainCounter* const next);
+int ChainCounter_Step1(ChainCounter* const self);
+void ChainCounter_StepN(ChainCounter* const self, int distance);
+int ChainCounter_GetValue(const ChainCounter* const self);
+long ChainCounter_Remaining(const ChainCounter* const self);
 
 #endif // include guard

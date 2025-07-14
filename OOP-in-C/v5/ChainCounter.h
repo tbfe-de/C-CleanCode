@@ -1,19 +1,17 @@
 #ifndef CHAIN_COUNTER_H
 #define CHAIN_COUNTER_H
 
-#include "BaseCounter.h"
+#include <stddef.h> /* NULL (macro) */
 
 typedef struct ChainCounter_ {
-	BaseCounter base_;
-	BaseCounter* next_;
+	int range_;
+	int value_;
+	struct ChainCounter_* next_;
 } ChainCounter;
 
-extern void (*ChainCounter_virtual[BaseCounter_virtual_size])(void);
-
-void ChainCounter_Init(ChainCounter* const self, const int range,
-                       const int value, BaseCounter* const next);
-void ChainCounter_Step1(ChainCounter* const self);
-void ChainCounter_StepN(ChainCounter* const self, int const distance);
+void ChainCounter_Init(ChainCounter* const self, int range, int value, ChainCounter* const next);
+int ChainCounter_Step1(ChainCounter* const self);
+void ChainCounter_StepN(ChainCounter* const self, int distance);
 int ChainCounter_GetValue(const ChainCounter* const self);
 long ChainCounter_Remaining(const ChainCounter* const self);
 

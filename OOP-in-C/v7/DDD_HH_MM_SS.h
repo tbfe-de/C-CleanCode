@@ -3,14 +3,19 @@
 
 #include "ChainCounter.h"
 
-struct DDD_HH_MM_SS_ {
+typedef struct DDD_HH_MM_SS_ {
 	ChainCounter days_;
 	ChainCounter hours_;
 	ChainCounter minutes_;
 	ChainCounter seconds_;
 	char display_[14];
-};
+} DDD_HH_MM_SS;
 
-extern struct DDD_HH_MM_SS_ DDD_HH_MM_SS;
+void DDD_HH_MM_SS_Init(DDD_HH_MM_SS*);
+void DDD_HH_MM_SS_set(DDD_HH_MM_SS*, int, int, int, int);
+void DDD_HH_MM_SS_update(DDD_HH_MM_SS*);
+void DDD_HH_MM_SS_step(DDD_HH_MM_SS*, int);
+long DDD_HH_MM_SS_remaining(const DDD_HH_MM_SS*);
+const char* DDD_HH_MM_SS_display(const DDD_HH_MM_SS*);
 
 #endif // include guard

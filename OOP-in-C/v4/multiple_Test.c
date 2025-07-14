@@ -3,59 +3,59 @@
 #include "ChainCounter.h"
 
 TEST(multiple, step) {
-	BaseCounter top{2, 1};
-	const size_t N = 3;
-	ChainCounter arr[N]{
-		{2, 1, top},
-		{2, 1, arr[0]},
-		{2, 1, arr[1]},
-	};
+	const size_t N = 4;
+	ChainCounter arr[N];
 
-	ASSERT_EQ(1, arr[2].GetValue());
-	ASSERT_EQ(1, arr[1].GetValue());
-	ASSERT_EQ(1, arr[0].GetValue());
-	ASSERT_EQ(1, top.GetValue());
+	for (int i = 0; i < N; ++i) {
+		ChainCounter *const pn = (i > 0) ? &arr[i-1] : NULL;
+		ChainCounter_Init(&arr[i], 2, 1, pn);
+	}
+	ASSERT_EQ(15, ChainCounter_Remaining(&arr[3]));
+	ASSERT_EQ(1, ChainCounter_GetValue(&arr[3]));
+	ASSERT_EQ(1, ChainCounter_GetValue(&arr[2]));
+	ASSERT_EQ(1, ChainCounter_GetValue(&arr[1]));
+	ASSERT_EQ(1, ChainCounter_GetValue(&arr[0]));
 
-	arr[2].Step1();
-	ASSERT_EQ(14, arr[2].Remaining());
-	arr[2].Step1();
-	ASSERT_EQ(13, arr[2].Remaining());
-	arr[2].Step1();
-	ASSERT_EQ(12, arr[2].Remaining());
-	arr[2].Step1();
-	ASSERT_EQ(11, arr[2].Remaining());
-	arr[2].Step1();
-	ASSERT_EQ(10, arr[2].Remaining());
-	arr[2].Step1();
-	ASSERT_EQ(9, arr[2].Remaining());
+	ChainCounter_Step1(&arr[3]);
+	ASSERT_EQ(14, ChainCounter_Remaining(&arr[3]));
+	ChainCounter_Step1(&arr[3]);
+	ASSERT_EQ(13, ChainCounter_Remaining(&arr[3]));
+	ChainCounter_Step1(&arr[3]);
+	ASSERT_EQ(12, ChainCounter_Remaining(&arr[3]));
+	ChainCounter_Step1(&arr[3]);
+	ASSERT_EQ(11, ChainCounter_Remaining(&arr[3]));
+	ChainCounter_Step1(&arr[3]);
+	ASSERT_EQ(10, ChainCounter_Remaining(&arr[3]));
+	ChainCounter_Step1(&arr[3]);
+	ASSERT_EQ(9, ChainCounter_Remaining(&arr[3]));
 
-	arr[2].Step1();
-	ASSERT_EQ(8, arr[2].Remaining());
-	ASSERT_EQ(4, arr[1].Remaining());
-	ASSERT_EQ(2, arr[0].Remaining());
-	ASSERT_EQ(1, top.Remaining());
-	ASSERT_EQ(0, arr[2].GetValue());
-	ASSERT_EQ(0, arr[1].GetValue());
-	ASSERT_EQ(0, arr[0].GetValue());
-	ASSERT_EQ(1, top.GetValue());
+	ChainCounter_Step1(&arr[3]);
+	ASSERT_EQ(8, ChainCounter_Remaining(&arr[3]));
+	ASSERT_EQ(4, ChainCounter_Remaining(&arr[2]));
+	ASSERT_EQ(2, ChainCounter_Remaining(&arr[1]));
+	ASSERT_EQ(1, ChainCounter_Remaining(&arr[0]));
+	ASSERT_EQ(0, ChainCounter_GetValue(&arr[3]));
+	ASSERT_EQ(0, ChainCounter_GetValue(&arr[2]));
+	ASSERT_EQ(0, ChainCounter_GetValue(&arr[1]));
+	ASSERT_EQ(1, ChainCounter_GetValue(&arr[0]));
 
-	arr[2].StepN(7);
-	ASSERT_EQ(1, arr[2].Remaining());
-	ASSERT_EQ(0, arr[1].Remaining());
-	ASSERT_EQ(0, arr[0].Remaining());
-	ASSERT_EQ(0, top.Remaining());
-	arr[2].Step1();
-	ASSERT_EQ(0, arr[2].Remaining());
-	ASSERT_EQ(0, arr[1].Remaining());
-	ASSERT_EQ(0, arr[0].Remaining());
-	ASSERT_EQ(0, top.Remaining());
-	arr[2].Step1();
-	ASSERT_EQ(0, arr[2].Remaining());
+	ChainCounter_StepN(&arr[3], 7);
+	ASSERT_EQ(1, ChainCounter_Remaining(&arr[3]));
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[2]));
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[1]));
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[0]));
+	ChainCounter_Step1(&arr[3]);
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[3]));
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[0]));
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[1]));
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[0]));
+	ChainCounter_Step1(&arr[3]);
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[3]));
 
-	arr[2].StepN(7);
-	ASSERT_EQ(0, arr[2].Remaining());
-	arr[2].Step1();
-	ASSERT_EQ(0, arr[2].Remaining());
-	arr[2].Step1();
-	ASSERT_EQ(0, arr[2].Remaining());
+	ChainCounter_StepN(&arr[3], 7);
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[3]));
+	ChainCounter_Step1(&arr[3]);
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[3]));
+	ChainCounter_Step1(&arr[3]);
+	ASSERT_EQ(0, ChainCounter_Remaining(&arr[3]));
 }

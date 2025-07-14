@@ -3,20 +3,21 @@
 
 #include "ChainCounter.h"
 
-struct DDD_HH_MM_SS_ {
+#include "SBuffer.h"
+
+typedef struct DDD_HH_MM_SS_ {
 	ChainCounter days_;
 	ChainCounter hours_;
 	ChainCounter minutes_;
 	ChainCounter seconds_;
-	char display_[14];
-};
+	SBuffer* display_;
+} DDD_HH_MM_SS;
 
-extern struct DDD_HH_MM_SS_ DDD_HH_MM_SS;
-
-extern void DDD_HH_MM_SS_set(int, int, int, int);
-extern void DDD_HH_MM_SS_update(void);
-extern void DDD_HH_MM_SS_step(int);
-extern long DDD_HH_MM_SS_remaining(void);
-extern const char* DDD_HH_MM_SS_display(void);
+void DDD_HH_MM_SS_Init(DDD_HH_MM_SS*, SBuffer*);
+void DDD_HH_MM_SS_set(DDD_HH_MM_SS*, int, int, int, int);
+void DDD_HH_MM_SS_step(DDD_HH_MM_SS*, int);
+long DDD_HH_MM_SS_remaining(const DDD_HH_MM_SS*);
+void DDD_HH_MM_SS_display(const DDD_HH_MM_SS*);
+void DDD_HH_MM_SS_run(DDD_HH_MM_SS*);
 
 #endif // include guard
