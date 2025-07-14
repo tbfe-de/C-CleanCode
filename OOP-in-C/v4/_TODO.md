@@ -22,7 +22,7 @@ often are closely associated with *Clean Code*.
 
 Same as in the previous version – no change in observable
 behavior. Except maybe when timing the code for its performance,
-as *late binding adds some run-time cost.
+as *late binding* adds some run-time cost.
 
 ### Run the Demo Application
 

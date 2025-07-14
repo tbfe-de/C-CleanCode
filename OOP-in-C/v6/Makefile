@@ -27,7 +27,7 @@ run-demo-app: app_main
 app_main: BaseCounter.c BaseCounter.h
 app_main: ChainCounter.c ChainCounter.h
 app_main: DDD_HH_MM_SS.c
-	$(Compile) -o $@ BaseCounter.c ChainCounter.c DDD_HH_MM_SS.c
+	$(Compile) -o $@ BaseCounter.c ChainCounter.c DDD_HH_MM_SS.c app_main.c
 
 clean:
 	rm -f $(TestRunner) app_main

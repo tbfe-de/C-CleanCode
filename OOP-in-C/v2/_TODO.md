@@ -48,7 +48,7 @@ itself can fix it.
 
 In this particular case it is probably no option, as the solution
 in version 3 is the same program written in C++. So you may either
-go with Plan B or completely skip this and go to version 5
+go with Plan B or completely skip this and go to version 5.
 
 ## Following Plan B - Understand what should have been done
 

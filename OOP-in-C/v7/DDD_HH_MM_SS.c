@@ -1,15 +1,5 @@
 #include "DDD_HH_MM_SS.h"
 
-#if 0
-struct DDD_HH_MM_SS_ {
-	ChainCounter days_;
-	ChainCounter hours_;
-	ChainCounter minutes_;
-	ChainCounter seconds_;
-	char display_[14];
-} DDD_HH_MM_SS;
-#endif
-
 struct DDD_HH_MM_SS_ DDD_HH_MM_SS = {
 	{999, 0, NULL },
 	{24,  0, &DDD_HH_MM_SS.days_},
