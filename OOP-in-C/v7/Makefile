@@ -1,6 +1,6 @@
 # Makefile for creating unit tests and demo app for this version
 # --------------------------------------------------------------
-# below the default for just running `make` can be set :
+# below the default for just running `make` can be set:
 #
 default: run-all-tests
 
