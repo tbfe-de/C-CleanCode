@@ -1,6 +1,6 @@
 ## Activities with Version 2
 
-Review th code and its separation to several files.
+Review the code and its separation to several files.
 
 **Especially make sure to understand the general file structure
 required by WOGTEST as you may need to add more tests time.**

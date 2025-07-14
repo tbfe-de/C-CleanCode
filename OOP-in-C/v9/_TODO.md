@@ -1,7 +1,5 @@
 ## Activities with Version 9
 
-== More TBD ==
-
 ### Run the Unit Tests
 
 First examine the new tests that have been added for
@@ -9,7 +7,7 @@ First examine the new tests that have been added for
 * `range_checked_atol` and
 * `range_checked_atof`
 
-**Note*: It's not quite *YAGNI* (you ain't going to need it) that
+**Note**: It's not quite *YAGNI* (you ain't going to need it) that
 there is already functionality implemented that is not needed in
 the current project. As an excuse just assume the new requirements
 (which then need this new functionality) is already known at this
@@ -28,7 +26,8 @@ DDD_HH_MM_SS_PRELOAD='10 20 30 40'
 export DDD_HH_MM_SS_PRELOAD
 ```
 
-If you want to know whether the variable was set maybe use:
+If you want to know whether the variable was set use:
+
 ```sh
 env | grep DDD_HH_MM_SS_PRELOAD
 ```
