@@ -1,4 +1,4 @@
-## Activities with Version 10
+## Activities with Version 6
 
 ### Run the Unit Tests
 ### Run the Demo Application

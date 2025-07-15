@@ -1,4 +1,4 @@
-## Activities with Version 12
+## Activities with Version 8
 
 == More TBD ==
 

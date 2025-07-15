@@ -30,7 +30,7 @@ TEST(twostage, step) {
 	ASSERT_EQ(1, ChainCounter_GetValue(&c_lower));
 
 	ChainCounter_StepN(&c_lower, 3);
-	ASSERT_EQ(1, ChainCounter_GetValue(&c_upper));
+	ASSERT_EQ(0, ChainCounter_GetValue(&c_upper));
 	ASSERT_EQ(5, ChainCounter_GetValue(&c_lower));
 
 	ChainCounter_StepN(&c_lower, 3);

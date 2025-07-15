@@ -1,4 +1,4 @@
-## Activities with Version 7
+## Activities with Version 3
 
 **Note:** In this version some duplication has been deliberately
 left "to be found". If you followed "Plan A" to approach this

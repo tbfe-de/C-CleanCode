@@ -41,7 +41,3 @@ TEST(countdown, step) {
     DDD_HH_MM_SS_update();
     EXPECT_STREQ("  0d00h00m00s", DDD_HH_MM_SS_display());
 }
-
-TEST(countdown, onemore) {
-    EXPECT_EQ(1, 2);
-}
