@@ -94,8 +94,17 @@ sub-directory `v1` plus the `Makefile` from `v2.
    * one is is part `DDD_HH_MM_SS.c`,
    * the other is part of `unit_Test.c`
    * for a better *Separation of Responsibilities* (SRP)
-     * **create a new file `run_app.cpp`** and  
-     * **move the `main` program from `DDD_HH_MM_SS.c` into it**   
+     * **create a new file `app_main.cpp`** and  
+     * **move the `main` program from `DDD_HH_MM_SS.c` into it**
+
+With `main` now moved to its own translation unit you need at
+least this in `app_main.cpp` too:
+
+```c
+extern int run_app();
+```
+
+Why is this?
 
 ------------------------------------------------------------------
 
@@ -105,24 +114,24 @@ fixed, do it before you continue.
 
 ------------------------------------------------------------------
 
-2. (optional) Complete the currently commented-out tests one after
-   the other.
+2. Complete some of the currently commented-out tests. After each
+   single one you complete run all the tests again.
 
-Use plain `make` (to run all tests) each time and if you don't get
-`** unit tests passed **`
-
-* either try to fix the problem yourself
-* make a mental notice to discuss it later (and leave the comment)
+   Completing ALL the commented-out tests is a lot o work and
+   probably not worth it. If you already have experience with a
+   more advanced framework for unit tests you'll probably already
+   see the drawbacks of assert`-ion based testing. What are they?
 
 ------------------------------------------------------------------
 
-3. Understand that as a minimum `assert`-ion based tests are nice
-   and emphasize the *TDD Mindset* but in practice they are clumsy
-   and hence unit testing should rather be done with a framework
-   specialized for that purpose.
+3. Understand that falling back to `assert`-ion based is just a
+   minimum and done in this first version just to get you into
+   the *TDD Mindset*. But in practice the approach is clumsy and
+   from on the version 2 *WOGTEST* is used as test framework.
 
-In the continuing steps of this example the *WOGTEST* is used as
-test framework.
+   (The C++ related side-step `x1`to `x4` of the main sequence
+   `v1` to `v4` continues with `assert`-ion based testing. So
+   you can take `x1` as a solution to `v1`.
 
 ------------------------------------------------------------------
 

@@ -17,33 +17,37 @@ behavior.
 
 ## Following Plan A – Get active with some hands-on coding
 
-In accordance with the *DRY*-Principle make sure there is
-actually **only one definition** of `struct DDD_HH_MM_SS_` – the
-one in file `DDD_HH_MM_SS.h`. This file needs to be included
-whenever this structure is referred to.
+1. In accordance with the *DRY-Principle* (Don't repeat yourself)
+make sure there is actually **only one definition** of
+`struct DDD_HH_MM_SS_` – the one in file `DDD_HH_MM_SS.h`. This
+file is to be included whenever this `struct` is referred to.
 
-In accordance with the principle *data hiding* make sure all
-access to members of this `struct` is via function calls.
+2. In accordance with the principle *Data Hiding* make sure all
+access to members of this `struct` is via function calls. (Though
+other than C++ in C this cannot be enforced.)
 
-In `main` add a message shown on `stderr` when the program is
-called with more than four arguments. In the message the name of
-the program and a hint how it would be correctly used should be
-included.
+3. For a good *User-Experience* from `main` a message should be
+shown on `stderr` when the program is called with more than four
+command line arguments. In this message the name of the program
+should be included together with a brief hint how it would be
+correctly used.
 
-In accordance with *SLA* (single level of abstraction) the message
-should be issued not from `main? but a separate function called
-from `main`. This function then should also terminate the `main`
-program and indicate via its return value there was a problem.
+4. In accordance with *SLA* (single level of abstraction) this
+message should be issued not from `main` but a separate function
+function called from `main`. After showing this message the same
+function should also terminate the `main` program. The value
+returned to the shell (user ommand line) should and indicate
+that there was problem.
 
-In accordance to *design and programm by contract* consult the
-reference documentation to decide whether it's necessary to add a
-`fflush(stderr)` so that it is guaranteed the message is shown.
+5. In accordance to *Design and programming by contract* consult
+the reference documentation to decide whether it's necessary to
+add an `fflush(stderr)`, to guarantee the message is shown.
 
-In accordance with *POLS* (principle of least surprise) chose the
-name of that function to indicate both, that it not only prints
+6. In accordance with *POLS* (principle of least surprise) chose
+the name of that function to indicate both, that it not only prints
 a usage message **but also** terminates the program.
 
-In accordance with *KISS* (keep it simple, stupid) and also the
+7. In accordance with *KISS* (keep it simple, stupid) and also the
 *Need to Know* decide what the proper visibility of that function
 should be.
 

@@ -1,8 +1,7 @@
-#include <stddef.h>	/* NULL (macro) */
-#include <stdlib.h>	/* atoi()
-#include <stdlib.h>	/* EXIT_SUCCESS (macro) */
+#include <stdlib.h>	/* atoi() */
+					/* EXIT_SUCCESS (macro) */
 
-extern void run_app();
+extern void run_app(int, int, int, int);
 
 int main(int argc, char* argv[]) {
 	run_app((argc > 1) ? atoi(argv[1]) : 4,

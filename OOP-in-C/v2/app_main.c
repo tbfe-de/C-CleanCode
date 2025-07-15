@@ -1,6 +1,6 @@
 #include <stdlib.h>	/* atoi() */
 
-extern void run_app(int, int, int, int);
+//extern void run_app();
 
 int main(int argc, char* argv[]) {
 	run_app((argc > 1) ? atoi(argv[1]) : 4,

@@ -28,7 +28,8 @@ Figure out how
   * for negative argument values
   * for arguments containing not only digits
 
-**Note:** Get accustomed to read the documentation for `atoi`here:
+**Note:** Get into the habit to read the full documentation of
+library functions you use, like `atoi`:
 
 https://en.cppreference.com/w/cpp/string/byte/atoi.html
 
@@ -42,16 +43,28 @@ the demo application will do. Only then run it and verify your
 prediction. If your prediction is not met, go back to the
 documentation. (*Cppreference.com* is basically a Wiki, so if
 some description is easily misunderstood, the user community
-itself can fix it.
+itself can fix it.)
 
 ## Following Plan A – Get active with some hands-on coding
 
-In this particular case it is probably no option, as the solution
-in version 3 is the same program written in C++. So you may either
-go with Plan B or completely skip this and go to version 5.
+Replace the `return 0` in `main` with `return EXIT_SUCCESS` for
+wider portability. If you think it is a good idea to put comment
+after each header file include, which symbol from the header is
+used, feel free to do so too.
+
+Also there is an apparent contradiction between the actual
+arguments of `run_app` (see `DDD_HH_MM_SS.c`) and the `extern`
+declaration suggested in the last step.
+
+Would you consider this to be *Clean Code* or prefer to fix it?
+
+How?
 
 ## Following Plan B - Understand what should have been done
 
-If you are at least a little bit interested in C++ or have prior
+If you are also a little bit interested in C++ or have prior
 experience with C++ you may now want to do a side-by-side
-comparison with Version 3.
+comparison with *eXtra Version 1* of this series of steps
+sub-directory `x1`. You may continue there up to `x4` or skip
+the C++ intermezzo and continue to following the main line of
+examples with *Version 3* (in sub-directory `v3`).
