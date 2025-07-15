@@ -10,17 +10,14 @@ Compile=gcc -std=c99
 # usually nothing needs to be changed below this line
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-TestRunner= gtest_based
+TestRunner= assert_based
 run-all-tests: $(TestRunner)
 	@./$(TestRunner)
 $(TestRunner): c_calls.h c_calls_Test.c
 $(TestRunner): BaseCounter.c BaseCounter.h
 $(TestRunner): ChainCounter.c ChainCounter.h
-$(TestRunner): single_Test.c twostage_Test.c multiple_Test.c
-$(TestRunner): main_Test.c
-	$(Compile) -o $@ -I.. BaseCounter.c ChainCounter.c\
-		c_calls_Test.c single_Test.c twostage_Test.c multiple_Test.c\
-		unit_Test.c main_Test.c
+$(TestRunner): unit_Test.c
+	$(Compile) -o $@ -I.. BaseCounter.c ChainCounter.c unit_Test.c
 
 run-demo-app: app_main
 	@./app_main

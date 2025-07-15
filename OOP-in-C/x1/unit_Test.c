@@ -29,54 +29,52 @@ void run_single(void) {
 	assert(single.GetValue() == 0);
 }
 
-#if 0
 
 void run_twostage(void) {
-	ChainCounter c_upper;
-	ChainCounter_Init(&c_upper, 4, 3, NULL);
-	ChainCounter c_lower;
-	ChainCounter_Init(&c_lower, 7, 6, &c_upper);
+	ChainCounter c_upper{4, 3};
+	ChainCounter c_lower{7, 6, &c_upper};
 
-	assert(ChainCounter_GetValue(&c_upper) == 3);
-	assert(ChainCounter_GetValue(&c_lower) == 6);
-	ChainCounter_Step1(&c_upper);
-	assert(ChainCounter_GetValue(&c_upper) == 2);
+	assert(c_upper.GetValue() == 3);
+	assert(c_lower.GetValue() == 6);
+	c_upper.Step1();
+	assert(c_upper.GetValue() == 2);
 
-	ChainCounter_StepN(&c_lower, 3);
-/*	assert(ChainCounter_GetValue(&c_upper) == ?...?);
-	assert(ChainCounter_GetValue(&c_lower) == ?...?);
-*/
-	ChainCounter_StepN(&c_lower, 3);
-/*	assert(ChainCounter_GetValue(&c_upper) == ?...?);
-	assert(ChainCounter_GetValue(&c_lower) == ?...?);
-*/
-	ChainCounter_StepN(&c_lower, 3);
-/*	assert(ChainCounter_GetValue(&c_upper) == ?...?);
-	assert(ChainCounter_GetValue(&c_lower) == ?...?);
-*/
-	ChainCounter_StepN(&c_lower, 3);
-/*	assert(ChainCounter_GetValue(&c_upper) == ?...?);
-	assert(ChainCounter_GetValue(&c_lower) == ?...?);
-*/
-	ChainCounter_StepN(&c_lower, 3);
-/*	assert(ChainCounter_GetValue(&c_upper) == ?...?);
-	assert(ChainCounter_GetValue(&c_lower) == ?...?);
-*/
-	ChainCounter_StepN(&c_lower, 3);
-/*	assert(ChainCounter_GetValue(&c_upper) == ?...?);
-	assert(ChainCounter_GetValue(&c_lower) == ?...?);
-*/
-	ChainCounter_StepN(&c_lower, 3);
-/*	assert(ChainCounter_GetValue(&c_upper) == ?...?);
-	assert(ChainCounter_GetValue(&c_lower) == ?...?);
-*/
-	ChainCounter_StepN(&c_lower, 3);
-	assert(ChainCounter_GetValue(&c_upper) == 0);
-	assert(ChainCounter_GetValue(&c_lower) == 0);
+	c_lower.StepN(3);
+	assert(c_upper.GetValue() == 2);
+	assert(c_lower.GetValue() == 3);
+
+	c_lower.StepN(3);
+	assert(c_upper.GetValue() == 2);
+	assert(c_lower.GetValue() == 0);
+
+	c_lower.StepN(3);
+	assert(c_upper.GetValue() == 1);
+	assert(c_lower.GetValue() == 4);
+
+	c_lower.StepN(3);
+	assert(c_upper.GetValue() == 1);
+	assert(c_lower.GetValue() == 1);
+
+	c_lower.StepN(3);
+	assert(c_upper.GetValue() == 0);
+	assert(c_lower.GetValue() == 5);
+
+	c_lower.StepN(3);
+	assert(c_upper.GetValue() == 0);
+	assert(c_lower.GetValue() == 2);
+
+	c_lower.StepN(3);
+	assert(c_upper.GetValue() == 0);
+	assert(c_lower.GetValue() == 0);
+
+	c_lower.StepN(3);
+	assert(c_upper.GetValue() == 0);
+	assert(c_lower.GetValue() == 0);
 }
 
 /*********************************************************************/
 
+#if 0
 void run_multiple(void) {
 
 	const size_t N = 4;
@@ -133,7 +131,7 @@ void run_multiple(void) {
 
 void  unit_tests(void) {
 	run_single();
-// 	run_twostage();
+ 	run_twostage();
 // run_multiple();
 }
 
