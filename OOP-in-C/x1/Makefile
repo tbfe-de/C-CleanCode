@@ -10,15 +10,12 @@ Compile=g++ -xc++ -std=c++11
 # usually nothing needs to be changed below this line
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-TestRunner= gtest_based
+TestRunner= assert_based
 run-all-tests: $(TestRunner)
 	@./$(TestRunner)
 $(TestRunner): ChainCounter.c ChainCounter.h
-$(TestRunner): single_Test.c twostage_Test.c multiple_Test.c
-$(TestRunner): main_Test.c
-	$(Compile) -o $@ -I.. ChainCounter.c\
-		single_Test.c twostage_Test.c multiple_Test.c\
-		main_Test.c
+$(TestRunner): unit_Test.c
+	$(Compile) -o $@ -I.. ChainCounter.c unit_Test.c
 
 run-demo-app: app_main
 	@./app_main
