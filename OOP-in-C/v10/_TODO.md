@@ -3,6 +3,9 @@
 == More TBD ==
 
 ### Run the Unit Tests
+
+As always.
+
 ### Run the Demo Application
-## Following Plan A – Get active with some hands-on coding
-## Following Plan B - Understand what should have been done
+
+As always.
